@@ -32,7 +32,6 @@ const condiciones = ["Precio Fijo", "A Fijar"] as const;
 const fmt = new Intl.NumberFormat("es-AR");
 
 function ContractsPage() {
-  const [navOpen, setNavOpen] = useState(false);
   const [status, setStatus] = useState<Status>("borrador");
   const [form, setForm] = useState({
     compradorRazon: "BUNGE ARGENTINA S.A.",
