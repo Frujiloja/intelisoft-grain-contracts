@@ -36,6 +36,13 @@ const condiciones = ["Precio Fijo", "A Fijar"] as const;
 const fmt = new Intl.NumberFormat("es-AR");
 
 function ContractsPage() {
+  const router = useRouter();
+  const lock = useServerFn(lockSite);
+  const handleLogout = async () => {
+    await lock({});
+    await router.navigate({ to: "/unlock" });
+    await router.invalidate();
+  };
   const [status, setStatus] = useState<Status>("borrador");
   const [form, setForm] = useState({
     compradorRazon: "BUNGE ARGENTINA S.A.",
