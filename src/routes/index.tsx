@@ -1,11 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
-  LayoutGrid,
-  Users,
-  FileSpreadsheet,
-  Sparkles,
-  FileText,
   Save,
   Send,
   CheckCircle2,
@@ -16,8 +11,6 @@ import {
   Calendar,
   Building2,
   UserRound,
-  Menu,
-  X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
