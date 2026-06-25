@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useMemo, useState } from "react";
 import {
   Save,
@@ -11,7 +12,9 @@ import {
   Calendar,
   Building2,
   UserRound,
+  LogOut,
 } from "lucide-react";
+import { requireUnlocked, lockSite } from "@/lib/gate.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,6 +23,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Carga rápida de contratos de venta de granos desde el campo o la oficina." },
     ],
   }),
+  beforeLoad: () => requireUnlocked(),
   component: ContractsPage,
 });
 
