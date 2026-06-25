@@ -86,7 +86,7 @@ function ContractsPage() {
             </div>
             <div className="flex items-center gap-2">
               <span className="hidden sm:inline-flex font-mono text-[11px] px-2.5 py-1 rounded border border-border text-muted-foreground">
-                Ejercicio <span className="ml-1 text-foreground">2025</span>
+                Contrato <span className="ml-1 text-foreground">2026</span>
               </span>
               <div className="grid h-9 w-9 place-items-center rounded-full bg-gold text-gold-foreground font-mono text-xs font-semibold">
                 AN

@@ -1,7 +1,7 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { Lock, ArrowRight, AlertCircle } from "lucide-react";
+import { Lock, ArrowRight, AlertCircle, Eye, EyeOff } from "lucide-react";
 import { unlockSite } from "@/lib/gate.functions";
 
 export const Route = createFileRoute("/unlock")({
@@ -20,6 +20,7 @@ function UnlockPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -68,15 +69,25 @@ function UnlockPage() {
               <span className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground">
                 Clave de acceso
               </span>
-              <input
-                type="password"
-                autoFocus
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••••••"
-                className="w-full h-11 px-3 rounded-md bg-input border border-border text-sm font-mono tracking-wider focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition"
-              />
+              <div className="relative">
+  <input
+    type={showPassword ? "text" : "password"}
+    autoFocus
+    autoComplete="current-password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    placeholder="••••••••••••"
+    className="w-full h-11 px-3 pr-10 rounded-md bg-input border border-border text-sm font-mono tracking-wider focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition"
+  />
+  <button
+    type="button"
+    onClick={() => setShowPassword((v) => !v)}
+    className="absolute right-2 top-1/2 -translate-y-1/2 grid h-8 w-8 place-items-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition"
+    aria-label={showPassword ? "Ocultar clave" : "Mostrar clave"}
+  >
+    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+  </button>
+</div>
             </label>
 
             {error && (
@@ -105,7 +116,7 @@ function UnlockPage() {
         </div>
 
         <p className="mt-6 text-center font-mono text-[11px] text-muted-foreground">
-          A&amp;J Nari S.A. · Intelisoft ERP · Ejercicio 2025
+          A&amp;J Nari S.A. · Intelisoft ERP · Ejercicio 2026
         </p>
       </div>
     </div>
