@@ -62,40 +62,31 @@ function ContractsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="flex">
-        <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
-
-        <main className="flex-1 min-w-0">
-          {/* Top bar */}
-          <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
-            <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-8 sm:py-4">
-              <button
-                onClick={() => setNavOpen(true)}
-                className="md:hidden grid h-9 w-9 place-items-center rounded-md border border-border text-muted-foreground hover:text-foreground"
-                aria-label="Abrir menú"
-              >
-                <Menu className="h-4 w-4" />
-              </button>
-              <div className="min-w-0">
-                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  Operaciones / Contratos
-                </p>
-                <h1 className="truncate text-base sm:text-lg font-semibold tracking-tight">
-                  Registro Web de Contratos de Venta
-                </h1>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="hidden sm:inline-flex font-mono text-[11px] px-2.5 py-1 rounded border border-border text-muted-foreground">
-                  Ejercicio <span className="ml-1 text-foreground">2025</span>
-                </span>
-                <div className="grid h-9 w-9 place-items-center rounded-full bg-gold text-gold-foreground font-mono text-xs font-semibold">
-                  AN
-                </div>
+      <main>
+        {/* Top bar */}
+        <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
+          <div className="mx-auto max-w-[1400px] grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-4 sm:px-8 sm:py-5">
+            <div className="min-w-0">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                intelisoft · operaciones
+              </p>
+              <h1 className="truncate text-base sm:text-lg font-semibold tracking-tight mt-1">
+                Registro Web de Contratos de Venta
+              </h1>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="hidden sm:inline-flex font-mono text-[11px] px-2.5 py-1 rounded border border-border text-muted-foreground">
+                Ejercicio <span className="ml-1 text-foreground">2025</span>
+              </span>
+              <div className="grid h-9 w-9 place-items-center rounded-full bg-gold text-gold-foreground font-mono text-xs font-semibold">
+                AN
               </div>
             </div>
-          </header>
+          </div>
+        </header>
 
-          <div className="px-4 sm:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8 max-w-[1400px]">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
+
             <StatusBar status={status} onChange={setStatus} />
 
             {/* Summary cards (dashboard-style) */}
