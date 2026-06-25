@@ -1,11 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
-  LayoutGrid,
-  Users,
-  FileSpreadsheet,
-  Sparkles,
-  FileText,
   Save,
   Send,
   CheckCircle2,
@@ -16,8 +11,6 @@ import {
   Calendar,
   Building2,
   UserRound,
-  Menu,
-  X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -39,7 +32,6 @@ const condiciones = ["Precio Fijo", "A Fijar"] as const;
 const fmt = new Intl.NumberFormat("es-AR");
 
 function ContractsPage() {
-  const [navOpen, setNavOpen] = useState(false);
   const [status, setStatus] = useState<Status>("borrador");
   const [form, setForm] = useState({
     compradorRazon: "BUNGE ARGENTINA S.A.",
@@ -69,40 +61,31 @@ function ContractsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="flex">
-        <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
-
-        <main className="flex-1 min-w-0">
-          {/* Top bar */}
-          <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
-            <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-8 sm:py-4">
-              <button
-                onClick={() => setNavOpen(true)}
-                className="md:hidden grid h-9 w-9 place-items-center rounded-md border border-border text-muted-foreground hover:text-foreground"
-                aria-label="Abrir menú"
-              >
-                <Menu className="h-4 w-4" />
-              </button>
-              <div className="min-w-0">
-                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  Operaciones / Contratos
-                </p>
-                <h1 className="truncate text-base sm:text-lg font-semibold tracking-tight">
-                  Registro Web de Contratos de Venta
-                </h1>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="hidden sm:inline-flex font-mono text-[11px] px-2.5 py-1 rounded border border-border text-muted-foreground">
-                  Ejercicio <span className="ml-1 text-foreground">2025</span>
-                </span>
-                <div className="grid h-9 w-9 place-items-center rounded-full bg-gold text-gold-foreground font-mono text-xs font-semibold">
-                  AN
-                </div>
+      <main>
+        {/* Top bar */}
+        <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
+          <div className="mx-auto max-w-[1400px] grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-4 sm:px-8 sm:py-5">
+            <div className="min-w-0">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                intelisoft · operaciones
+              </p>
+              <h1 className="truncate text-base sm:text-lg font-semibold tracking-tight mt-1">
+                Registro Web de Contratos de Venta
+              </h1>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="hidden sm:inline-flex font-mono text-[11px] px-2.5 py-1 rounded border border-border text-muted-foreground">
+                Ejercicio <span className="ml-1 text-foreground">2025</span>
+              </span>
+              <div className="grid h-9 w-9 place-items-center rounded-full bg-gold text-gold-foreground font-mono text-xs font-semibold">
+                AN
               </div>
             </div>
-          </header>
+          </div>
+        </header>
 
-          <div className="px-4 sm:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8 max-w-[1400px]">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
+
             <StatusBar status={status} onChange={setStatus} />
 
             {/* Summary cards (dashboard-style) */}
@@ -266,74 +249,12 @@ function ContractsPage() {
             <footer className="pt-2 pb-8 font-mono text-[11px] text-muted-foreground">
               A&amp;J Nari S.A. · Intelisoft ERP · Cuenta y Orden
             </footer>
-          </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }
 
-/* ---------------- Sidebar ---------------- */
-
-function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const items = [
-    { icon: <LayoutGrid className="h-4 w-4" />, label: "Dashboard" },
-    { icon: <Users className="h-4 w-4" />, label: "Clientes" },
-    { icon: <FileSpreadsheet className="h-4 w-4" />, label: "Operaciones" },
-    { icon: <FileText className="h-4 w-4" />, label: "Contratos", active: true },
-    { icon: <Sparkles className="h-4 w-4" />, label: "Asistente IA" },
-  ];
-
-  return (
-    <>
-      {open && (
-        <div className="fixed inset-0 z-40 bg-black/60 md:hidden" onClick={onClose} />
-      )}
-      <aside
-        className={`fixed md:sticky top-0 left-0 z-50 h-screen w-64 shrink-0 border-r border-border bg-background flex flex-col transition-transform md:translate-x-0 ${
-          open ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="flex items-center justify-between p-5">
-          <div>
-            <p className="font-mono text-base font-semibold tracking-tight">intelisoft</p>
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mt-1">
-              Cuenta y Orden
-            </p>
-          </div>
-          <button
-            onClick={onClose}
-            className="md:hidden grid h-8 w-8 place-items-center rounded-md text-muted-foreground hover:text-foreground"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-
-        <nav className="px-3 flex-1 space-y-1">
-          {items.map((it) => (
-            <a
-              key={it.label}
-              href="#"
-              className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition ${
-                it.active
-                  ? "bg-surface text-foreground border-l-2 border-gold pl-[10px]"
-                  : "text-muted-foreground hover:bg-surface hover:text-foreground"
-              }`}
-            >
-              {it.icon}
-              {it.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="p-5 border-t border-border">
-          <p className="text-sm font-medium">A&amp;J Nari S.A.</p>
-          <p className="font-mono text-[11px] text-muted-foreground mt-1">Ejercicio 2025</p>
-        </div>
-      </aside>
-    </>
-  );
-}
 
 /* ---------------- Status bar ---------------- */
 
