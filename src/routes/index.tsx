@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useMemo, useState } from "react";
 import {
   Save,
@@ -11,7 +12,9 @@ import {
   Calendar,
   Building2,
   UserRound,
+  LogOut,
 } from "lucide-react";
+import { requireUnlocked, lockSite } from "@/lib/gate.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,6 +23,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Carga rápida de contratos de venta de granos desde el campo o la oficina." },
     ],
   }),
+  beforeLoad: () => requireUnlocked(),
   component: ContractsPage,
 });
 
@@ -32,6 +36,13 @@ const condiciones = ["Precio Fijo", "A Fijar"] as const;
 const fmt = new Intl.NumberFormat("es-AR");
 
 function ContractsPage() {
+  const router = useRouter();
+  const lock = useServerFn(lockSite);
+  const handleLogout = async () => {
+    await lock({});
+    await router.navigate({ to: "/unlock" });
+    await router.invalidate();
+  };
   const [status, setStatus] = useState<Status>("borrador");
   const [form, setForm] = useState({
     compradorRazon: "BUNGE ARGENTINA S.A.",
@@ -80,6 +91,13 @@ function ContractsPage() {
               <div className="grid h-9 w-9 place-items-center rounded-full bg-gold text-gold-foreground font-mono text-xs font-semibold">
                 AN
               </div>
+              <button
+                onClick={handleLogout}
+                title="Cerrar sesión"
+                className="grid h-9 w-9 place-items-center rounded-md border border-border text-muted-foreground hover:text-foreground hover:bg-surface transition"
+              >
+                <LogOut className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </header>
