@@ -91,6 +91,13 @@ function ContractsPage() {
               <div className="grid h-9 w-9 place-items-center rounded-full bg-gold text-gold-foreground font-mono text-xs font-semibold">
                 AN
               </div>
+              <button
+                onClick={handleLogout}
+                title="Cerrar sesión"
+                className="grid h-9 w-9 place-items-center rounded-md border border-border text-muted-foreground hover:text-foreground hover:bg-surface transition"
+              >
+                <LogOut className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </header>
