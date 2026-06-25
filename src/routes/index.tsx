@@ -250,74 +250,12 @@ function ContractsPage() {
             <footer className="pt-2 pb-8 font-mono text-[11px] text-muted-foreground">
               A&amp;J Nari S.A. · Intelisoft ERP · Cuenta y Orden
             </footer>
-          </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }
 
-/* ---------------- Sidebar ---------------- */
-
-function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const items = [
-    { icon: <LayoutGrid className="h-4 w-4" />, label: "Dashboard" },
-    { icon: <Users className="h-4 w-4" />, label: "Clientes" },
-    { icon: <FileSpreadsheet className="h-4 w-4" />, label: "Operaciones" },
-    { icon: <FileText className="h-4 w-4" />, label: "Contratos", active: true },
-    { icon: <Sparkles className="h-4 w-4" />, label: "Asistente IA" },
-  ];
-
-  return (
-    <>
-      {open && (
-        <div className="fixed inset-0 z-40 bg-black/60 md:hidden" onClick={onClose} />
-      )}
-      <aside
-        className={`fixed md:sticky top-0 left-0 z-50 h-screen w-64 shrink-0 border-r border-border bg-background flex flex-col transition-transform md:translate-x-0 ${
-          open ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="flex items-center justify-between p-5">
-          <div>
-            <p className="font-mono text-base font-semibold tracking-tight">intelisoft</p>
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mt-1">
-              Cuenta y Orden
-            </p>
-          </div>
-          <button
-            onClick={onClose}
-            className="md:hidden grid h-8 w-8 place-items-center rounded-md text-muted-foreground hover:text-foreground"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-
-        <nav className="px-3 flex-1 space-y-1">
-          {items.map((it) => (
-            <a
-              key={it.label}
-              href="#"
-              className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition ${
-                it.active
-                  ? "bg-surface text-foreground border-l-2 border-gold pl-[10px]"
-                  : "text-muted-foreground hover:bg-surface hover:text-foreground"
-              }`}
-            >
-              {it.icon}
-              {it.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="p-5 border-t border-border">
-          <p className="text-sm font-medium">A&amp;J Nari S.A.</p>
-          <p className="font-mono text-[11px] text-muted-foreground mt-1">Ejercicio 2025</p>
-        </div>
-      </aside>
-    </>
-  );
-}
 
 /* ---------------- Status bar ---------------- */
 
