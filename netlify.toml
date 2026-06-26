@@ -2,7 +2,16 @@
   command = "bun run build"
   publish = "dist/client"
 
+[functions]
+  directory = "netlify/functions"
+
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/.netlify/functions/server"
   status = 200
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  force = true
