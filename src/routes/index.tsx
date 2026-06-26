@@ -106,7 +106,7 @@ function ContractsPage() {
 
             <StatusBar status={status} onChange={setStatus} />
 
-            {/* Summary cards (dashboard-style) */}
+            {/* Summary cards (dashboard-style) 
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <SummaryCard
                 label="Commodity"
@@ -145,7 +145,7 @@ function ContractsPage() {
                 }
                 hint={`${form.commodity} · ${fmt.format(parseFloat(form.cantidad || "0"))} Tn`}
               />
-            </section>
+            </section> */}
 
             {/* Form + side preview */}
             <section className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_360px] gap-6">
